@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Audio examples and supplementary results for post-hoc FX registration and rendered verification.">
+  <title>Post-hoc FX Registration and Rendered Verification for Audio Effect Transfer</title>
+  <link rel="stylesheet" href="styles.css?v=4">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="site-name" href="#top">FX Registration</a>
+      <nav aria-label="Primary navigation">
+        <a href="#benchmark">Benchmark</a>
+        <a href="#audio">Audio</a>
+        <a href="#results">Results</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="paper-header">
+      <h1>Post-hoc FX Registration and Rendered Verification for Audio Effect Transfer</h1>
+      <p class="authors">Xinlu Liu, Huibin Lin, Zhenhai Yan</p>
+      <p class="affiliation">Galaxy Audio Effect Team, Tencent Music Entertainment</p>
+      <p class="summary">
+        We attach a lightweight registration head to a frozen audio-effect
+        representation, propose a finite set of executable FX settings, and
+        select among their rendered outputs. This avoids query-time parameter
+        optimization while retaining audio-based verification.
+      </p>
+    </section>
+
+    <section class="content-section" id="benchmark">
+      <h2>CounterFX-200 Benchmark</h2>
+      <p>
+        Two adjacent, non-overlapping windows are taken from the same track.
+        The same hidden FX chain is applied to both windows. The system receives
+        the unprocessed source <i>A</i> and processed reference
+        <i>B</i><sub>ref</sub>; the processed source
+        <i>A</i><sub>target</sub> is withheld and used as an exact same-content
+        evaluation target.
+      </p>
+
+      <figure class="benchmark-figure">
+        <div class="track-row" aria-label="Adjacent source windows A and B">
+          <span class="track-label">Original track</span>
+          <span class="track-window"><b>A</b><small>source window</small></span>
+          <span class="track-window"><b>B</b><small>adjacent window</small></span>
+        </div>
+        <div class="construction-row">
+          <span><i>A</i></span><span class="arrow">&rarr;</span>
+          <span><i>A</i><sub>source</sub></span><span class="role">system input</span>
+        </div>
+        <div class="construction-row">
+          <span><i>B</i></span><span class="arrow">&rarr;</span>
+          <span><i>R</i>(<i>B</i>, <i>c</i><sub>t</sub>, <i>&theta;</i><sub>t</sub>) = <i>B</i><sub>ref</sub></span><span class="role">system input</span>
+        </div>
+        <div class="construction-row">
+          <span><i>A</i></span><span class="arrow">&rarr;</span>
+          <span><i>R</i>(<i>A</i>, <i>c</i><sub>t</sub>, <i>&theta;</i><sub>t</sub>) = <i>A</i><sub>target</sub></span><span class="role">withheld target</span>
+        </div>
+        <figcaption>
+          The known renderer makes the target exactly reachable without using
+          an effect-normalization model to construct pseudo ground truth.
+        </figcaption>
+      </figure>
+    </section>
+
+    <section class="content-section" id="audio">
+      <h2>Audio Examples</h2>
+      <p>
+        Representative known- and hidden-topology examples from CounterFX-200.
+        Each example occupies one row. Lower <i>L</i><sub>d</sub> indicates a
+        closer match to the exact target. Only one recording plays at a time.
+      </p>
+      <div id="audio-cases" class="audio-cases"></div>
+      <noscript><p>JavaScript is required to display the audio examples.</p></noscript>
+    </section>
+
+    <section class="content-section" id="results">
+      <h2>Supplementary Results</h2>
+
+      <section class="result-block" aria-labelledby="budget-title">
+        <h3 id="budget-title">Candidate budget</h3>
+        <p>
+          Learned proposals are most useful at small budgets. With known
+          topology, RelativeFx Head@16 obtains <i>L</i><sub>d</sub> = 0.769,
+          compared with 0.770 for Random@512, using 32&times; fewer candidates.
+        </p>
+        <figure class="paper-figure narrow-figure">
+          <img src="assets/images/budget-curves-paper.png" alt="Candidate-budget curves for RelativeFx, Fx-Encoder++, and AFx-Rep under known and hidden topology">
+          <figcaption>
+            Selected and oracle error as the number of valid rendered
+            candidates increases. Dashed curves show the best candidate in
+            each pool and therefore separate proposal coverage from verifier
+            ranking.
+          </figcaption>
+        </figure>
+      </section>
+
+      <section class="result-block" aria-labelledby="encoder-title">
+        <h3 id="encoder-title">Cross-representation comparison</h3>
+        <p>
+          The same post-hoc registration protocol is applied to three frozen
+          representations. Values are selected mean <i>L</i><sub>d</sub> on
+          CounterFX-200; FX-set F1 ignores effect order and parameters.
+        </p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th rowspan="2">Frozen representation</th><th colspan="2">Known <i>L</i><sub>d</sub> &darr;</th><th colspan="2">Hidden <i>L</i><sub>d</sub> &darr;</th><th colspan="2">Hidden FX-set F1 &uarr;</th></tr>
+              <tr><th>Head@16</th><th>Head@512</th><th>Head@16</th><th>Head@512</th><th>Head@16</th><th>Head@512</th></tr>
+            </thead>
+            <tbody>
+              <tr><th>RelativeFx</th><td><b>0.769</b></td><td><b>0.708</b></td><td><b>0.888</b></td><td><b>0.865</b></td><td><b>0.701</b></td><td>0.725</td></tr>
+              <tr><th>Fx-Encoder++</th><td>0.915</td><td>0.836</td><td>1.154</td><td>1.076</td><td>0.628</td><td>0.654</td></tr>
+              <tr><th>AFx-Rep</th><td>1.132</td><td>0.985</td><td>1.442</td><td>1.304</td><td>0.678</td><td><b>0.736</b></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="result-block" aria-labelledby="coverage-title">
+        <h3 id="coverage-title">Proposal coverage and verifier gap</h3>
+        <p>
+          Oracle error is the best waveform match already present in a
+          candidate pool. The selected-oracle gap therefore measures how much
+          performance remains in candidate ranking after proposal generation.
+        </p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th rowspan="2">Representation</th><th rowspan="2">Topology</th><th colspan="3">Head@16</th><th colspan="3">Head@512</th></tr>
+              <tr><th>Selected</th><th>Oracle</th><th>Gap</th><th>Selected</th><th>Oracle</th><th>Gap</th></tr>
+            </thead>
+            <tbody>
+              <tr><th>RelativeFx</th><td>Known</td><td>0.769</td><td>0.673</td><td><b>0.096</b></td><td>0.708</td><td>0.510</td><td><b>0.197</b></td></tr>
+              <tr><th>Fx-Encoder++</th><td>Known</td><td>0.915</td><td>0.764</td><td>0.151</td><td>0.836</td><td>0.556</td><td>0.281</td></tr>
+              <tr><th>AFx-Rep</th><td>Known</td><td>1.132</td><td>0.791</td><td>0.341</td><td>0.985</td><td>0.548</td><td>0.437</td></tr>
+              <tr class="group-start"><th>RelativeFx</th><td>Hidden</td><td>0.888</td><td>0.710</td><td><b>0.179</b></td><td>0.865</td><td>0.552</td><td><b>0.313</b></td></tr>
+              <tr><th>Fx-Encoder++</th><td>Hidden</td><td>1.154</td><td>0.881</td><td>0.273</td><td>1.076</td><td>0.643</td><td>0.433</td></tr>
+              <tr><th>AFx-Rep</th><td>Hidden</td><td>1.442</td><td>0.941</td><td>0.500</td><td>1.304</td><td>0.625</td><td>0.678</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="result-block" aria-labelledby="cma-title">
+        <h3 id="cma-title">Optimization budget and audio match</h3>
+        <p>
+          In hidden-topology CMA-ES, the verifier cosine objective continues to
+          improve with more calls, while output error is lowest at 2,048 calls.
+          This difference motivates reporting waveform-level matching rather
+          than the search objective alone.
+        </p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Renderer calls</th><th>128</th><th>512</th><th>1,024</th><th>2,048</th><th>4,096</th></tr>
+            </thead>
+            <tbody>
+              <tr><th>Mean <i>L</i><sub>d</sub> &darr;</th><td>1.088</td><td>0.955</td><td>0.932</td><td><b>0.918</b></td><td>0.933</td></tr>
+              <tr><th>Cosine objective &uarr;</th><td>0.925</td><td>0.957</td><td>0.965</td><td>0.971</td><td><b>0.974</b></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="result-block" aria-labelledby="runtime-title">
+        <h3 id="runtime-title">Matched runtime</h3>
+        <p>
+          Median end-to-end query time for 10-second audio, including proposal,
+          rendering, candidate encoding, and selection. All GPU measurements
+          use one NVIDIA L20. CPU and GPU use different renderer
+          implementations and are not intended as a direct hardware
+          comparison.
+        </p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th rowspan="2">Method</th><th rowspan="2">Calls</th><th colspan="2">GPU time (s)</th><th colspan="2">CPU time (s)</th></tr>
+              <tr><th>Known</th><th>Hidden</th><th>Known</th><th>Hidden</th></tr>
+            </thead>
+            <tbody>
+              <tr><th>Direct head</th><td>1</td><td>0.121</td><td>0.137</td><td>0.224</td><td>0.236</td></tr>
+              <tr><th>Head@16</th><td>16</td><td>0.846</td><td>1.753</td><td>3.124</td><td>3.145</td></tr>
+              <tr><th>Head@512</th><td>512</td><td>22.584</td><td>33.382</td><td>111.088</td><td>108.328</td></tr>
+              <tr><th>Random@512</th><td>512</td><td>23.127</td><td>42.998</td><td>&mdash;</td><td>&mdash;</td></tr>
+              <tr><th>CMA-ES@512</th><td>512</td><td>22.627</td><td>38.688</td><td>&mdash;</td><td>&mdash;</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="result-block" aria-labelledby="listening-title">
+        <h3 id="listening-title">Perceptual evaluation</h3>
+        <p>
+          Twenty-seven listeners provided 648 five-point ratings. Across the
+          462 system-only ratings, subjective similarity correlates with
+          negative <i>L</i><sub>d</sub> at Spearman <i>&rho;</i> = 0.377, so the
+          association is not explained only by the source and target anchors.
+        </p>
+        <div class="table-wrap compact-table">
+          <table>
+            <thead>
+              <tr><th>Condition</th><th>Mean score &uarr;</th><th>Ratings</th></tr>
+            </thead>
+            <tbody>
+              <tr><th>Hidden target</th><td>3.99</td><td>93</td></tr>
+              <tr><th>Head@512</th><td><b>3.52</b></td><td>90</td></tr>
+              <tr><th>Head@16</th><td>3.41</td><td>85</td></tr>
+              <tr><th>CMA-ES@512</th><td>3.37</td><td>95</td></tr>
+              <tr><th>Random@512</th><td>3.34</td><td>97</td></tr>
+              <tr><th>Direct head</th><td>3.23</td><td>95</td></tr>
+              <tr><th>Source</th><td>2.26</td><td>93</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="result-block" aria-labelledby="findings-title">
+        <h3 id="findings-title">Additional observations</h3>
+        <ul class="findings">
+          <li><b>Proposal and verification are distinct bottlenecks.</b> Oracle curves improve steadily with budget, while selected curves flatten earlier.</li>
+          <li><b>Audio matching does not require exact chain recovery.</b> RelativeFx Head@512 reaches hidden-topology FX-set F1 = 0.725, while exact chain recovery is 14.0%.</li>
+          <li><b>The output metric has perceptual support.</b> Across 27 listeners and 648 five-point ratings, system-only scores correlate with negative <i>L</i><sub>d</sub> at Spearman <i>&rho;</i> = 0.377.</li>
+        </ul>
+      </section>
+    </section>
+  </main>
+
+  <footer>
+    <p><b>Xinlu Liu, Huibin Lin, and Zhenhai Yan</b><br>Galaxy Audio Effect Team, Tencent Music Entertainment</p>
+    <p>Audio excerpts are drawn from FMA under the licenses listed with each example.</p>
+  </footer>
+
+  <script src="data.js?v=4"></script>
+  <script src="app.js?v=4"></script>
+</body>
+</html>
