@@ -1,0 +1,42 @@
+{
+  "items": 200,
+  "genres": {
+    "Electronic": 26,
+    "Experimental": 26,
+    "Folk": 26,
+    "Hip-Hop": 26,
+    "Instrumental": 19,
+    "International": 26,
+    "Pop": 25,
+    "Rock": 26
+  },
+  "chain_lengths": {
+    "1": 30,
+    "2": 57,
+    "3": 68,
+    "4": 45
+  },
+  "effect_occurrences": {
+    "chorus": 55,
+    "compressor": 120,
+    "delay": 25,
+    "distortion": 21,
+    "highpass_filter": 67,
+    "lowpass_filter": 50,
+    "peak_filter": 113,
+    "reverb": 77
+  },
+  "source_target_ld_min": {
+    "maximum": 12.356633186340332,
+    "median": 1.5580264329910278,
+    "minimum": 0.8007795214653015,
+    "p10": 0.9645814180374146,
+    "p90": 4.58391923904419
+  },
+  "rejected_audio_candidates": 1,
+  "rejected_target_parameter_draws": 388,
+  "rejected_target_draws_by_reason": {
+    "clipping": 32,
+    "low_source_target_ld": 356
+  }
+}

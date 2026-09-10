@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Audio examples and supplementary results for post-hoc FX registration and rendered verification.">
   <title>Post-hoc FX Registration and Rendered Verification for Audio Effect Transfer</title>
-  <link rel="stylesheet" href="styles.css?v=5">
+  <link rel="stylesheet" href="styles.css?v=6">
 </head>
 <body>
   <header class="site-header">
@@ -69,6 +69,42 @@
           whether differently processed versions converge after Fx-Normalization.
         </figcaption>
       </figure>
+      <details id="benchmark-specification" class="benchmark-specification">
+        <summary>CounterFX-200 protocol and configuration</summary>
+        <p>
+          The frozen test set contains 200 license-filtered FMA-small test
+          excerpts. Each provides two adjacent 10-s windows at 44.1 kHz,
+          independently normalized to &minus;20 LUFS. Target chains contain
+          1&ndash;4 of eight effects, with 22 variable controls and four order
+          templates. Targets use Pedalboard 0.9.23 with no output limiter or
+          loudness matching.
+        </p>
+        <p>
+          The protocol specifies source screening, effect-selection
+          probabilities, order templates, parameter ranges, and linear or
+          log-uniform sampling. Target parameters are redrawn for clipping or
+          insufficient processing change: both source&ndash;target distances
+          must satisfy <i>L</i><sub>d</sub> &ge; 0.8. The released manifest fixes
+          the accepted targets; it is evaluation metadata, not model input.
+        </p>
+        <p>
+          Known topology supplies effect identities and order but not controls;
+          hidden topology supplies neither. Shared random pools isolate
+          representation ranking, whereas encoder-specific head-centered pools
+          evaluate complete systems. Oracle error describes candidate coverage;
+          the selected&ndash;oracle gap describes ranking error within a pool.
+        </p>
+        <div class="benchmark-downloads" aria-label="CounterFX-200 specification downloads">
+          <a href="assets/results/counterfx200/protocol.md">Full protocol</a>
+          <a href="assets/results/counterfx200/configuration.json" download>Configuration JSON</a>
+          <a href="assets/results/counterfx200/parameter_ranges.csv" download>Parameter ranges</a>
+          <a href="assets/results/counterfx200/audio_manifest.csv" download>200-item audio manifest</a>
+          <a href="assets/results/counterfx200/target_chains.jsonl" download>Target chains</a>
+          <a href="assets/results/counterfx200/summary.json" download>Dataset summary</a>
+          <a href="assets/results/counterfx200/provenance.json" download>Provenance</a>
+          <a href="assets/results/counterfx200/checksums.sha256" download>Checksums</a>
+        </div>
+      </details>
     </section>
 
     <section class="content-section" id="audio">

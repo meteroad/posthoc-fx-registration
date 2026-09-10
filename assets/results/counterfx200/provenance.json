@@ -1,0 +1,68 @@
+{
+  "export_date": "2026-09-11",
+  "sources_sha256": {
+    "manifests/fma_test_core_200.csv": "a0ea4974d345fd6ae1f607b6a2b8bc094f7743af56c51e12233b34bc632fe6fd",
+    "manifests/pedalboard_known_test_seed20270722.jsonl": "30c9c6c4e0c4d2884c90b9d7006a845a723447080809f741a59ca88ae7f32d9a",
+    "manifests/pedalboard_known_test_seed20270722.summary.json": "a0c199f44f5622c7ae9b76a5225c502e18836d6678cc2400216557a1387b0ec7",
+    "results/relativefx_cmaes_unknown_test200_pop128_iter32_seed20270726/run_config.json": "bc722aba92b842380cd0c8cd01dbe9c74130949614de55a0e322de6982799139",
+    "locks/pedalboard_renderer_lock.json": "937916b48b1622253cbcdcb217a0a7471204e5fcdcf3c495e1741f8968387bc8"
+  },
+  "renderer_lock": {
+    "benchmark_version": "pedalboard-fma-dev-v0.3",
+    "candidate_renderer": {
+      "formal_chain_parity_report_sha256": "713945c20abf11daa511ffbad8ec21d9182579b40e8433730fbb08f4577ddb50",
+      "id": "pedalboard_fx_torch_cuda_accel",
+      "source_sha256": {
+        "pedalboard_fx_torch/__init__.py": "9bf43a20f5e756a4573525af06113a62cee0d0e840fc9c933e6ddb2d90b575c4",
+        "pedalboard_fx_torch/accelerators.py": "2ad43a9c4cca885c6602c52b15b6864428efefd238b9a96e1e2368ce3dc60649",
+        "pedalboard_fx_torch/benchmark_spec.py": "86a0befa8562ad8909ed554bc02f738234d424ef5841fe158fc0fd92c70daf20",
+        "pedalboard_fx_torch/chain.py": "c29614cbfff26d03d2e7e69b01dea4ef3bb67fc2c56e7f7cc80150e28fa55c34",
+        "pedalboard_fx_torch/dynamics.py": "f36a9e183a059c9344736434165b725e1bb3a5f10813e444123435952fd1f1cb",
+        "pedalboard_fx_torch/filters.py": "7c369e13ce83f32afed0d596d5b08f9351ba4d615438646d8612f362828f5631",
+        "pedalboard_fx_torch/modulation.py": "f4bf47449c57e1c435e518068d1d6b1b43f2a5d4dc8d067f6e5cce338d9f4199",
+        "pedalboard_fx_torch/nonlinear.py": "0aa2a194726eea8abb1a3b9fa248fe0ecb02a3b2b6a9d93f1c71ca577a9d2970",
+        "pedalboard_fx_torch/registry.py": "0dc02695ba8483e33365417608c21ec5a8dea13a950dfd2200c4d45e73c53e17",
+        "pedalboard_fx_torch/reverb.py": "2775d56d95c066a935eb3a0c896ed83a64fec2fcd6f6f3ca6ffaef5f1208f9e3",
+        "pedalboard_fx_torch/time.py": "f64a2b3a9f5539b7627b539b04c00dac51346c5f4d430478dc012d9dd5b4f5c2",
+        "pedalboard_fx_torch/util.py": "4d709857735ae7bb29aa7e50194c4ec069bf0716f51d5bf3732b66d65cd8b187",
+        "pedalboard_ref.py": "9eee785f8685b9be26034a36ccc558aab3c5b241c5c374f977b1a2f54db608e6"
+      }
+    },
+    "runtime": {
+      "cuda_available": true,
+      "cuda_device_0": "NVIDIA L20",
+      "cuda_runtime": "12.1",
+      "libc": {
+        "name": "glibc",
+        "version": "2.28"
+      },
+      "numpy": "1.26.4",
+      "platform": "Linux-5.4.119-19.0009.44-x86_64-with-glibc2.28",
+      "python": "3.11.15",
+      "torch": "2.1.2+cu121",
+      "torchaudio": "2.1.2+cu121"
+    },
+    "target_renderer": {
+      "buffer_size": 8192,
+      "id": "spotify_pedalboard_cpp_0.9.23",
+      "juce_git_commit": "ddaa09110392a4419fecbb6d3022bede89b7e841",
+      "package_version": "0.9.23",
+      "peak_limiter": false,
+      "reset": true,
+      "rms_matching": false,
+      "sample_rate": 44100,
+      "upstream_git_commit": "87db53bb790ce21bb5da959dc92d462d3858f4fd",
+      "upstream_git_status": [
+        " M vendors/lame",
+        " M vendors/libgsm",
+        " M vendors/rubberband"
+      ]
+    }
+  },
+  "notes": [
+    "Source audio manifest copied byte-for-byte. Target export retains physical controls, seeds, and acceptance measurements.",
+    "The renderer lock retains its historical development-version label; the frozen test manifest has its own version.",
+    "No source audio, model weights, or internal training metadata are included.",
+    "This specifies CounterFX evaluation construction, not registration audio pairing."
+  ]
+}

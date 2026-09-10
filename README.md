@@ -31,6 +31,23 @@ per case.
 
 Paper and code links should be added only after public URLs are available.
 
+## CounterFX-200 Specification
+
+The existing benchmark section includes a native expandable
+`#benchmark-specification` block. Its downloads under `assets/results/counterfx200`
+document evaluation construction, separately from the normalization audit and
+registration audio pairing. No audio or internal training data are included.
+
+```bash
+python3 scripts/build_counterfx_spec.py /path/to/paper/repository
+python3 -m unittest discover -s tests -v
+```
+
+The exporter uses frozen target manifests and a saved formal-evaluation schema,
+checks that their priors agree, and exports physical controls to avoid confusion
+with legacy plugin-normalized metadata. It requires only the Python standard
+library and does not run inference or rebuild the test set.
+
 ## Normalization Supplement
 
 The public page is served from `gh-pages`. Its `#normalization` section is

@@ -1,0 +1,307 @@
+{
+  "name": "CounterFX-200",
+  "manifest_version": "pedalboard-fma-test-v0.1",
+  "items": 200,
+  "dataset": "FMA-small",
+  "split": "test",
+  "sample_rate": 44100,
+  "channels": 2,
+  "window_seconds": 10,
+  "preferred_start_a_seconds": 5,
+  "target_lufs_per_window": -20,
+  "audio_seed": 20270720,
+  "effect_seed": 20270722,
+  "genre_quotas": {
+    "Electronic": 26,
+    "Experimental": 26,
+    "Folk": 26,
+    "Hip-Hop": 26,
+    "Instrumental": 19,
+    "International": 26,
+    "Pop": 25,
+    "Rock": 26
+  },
+  "effect_order": [
+    "highpass_filter",
+    "lowpass_filter",
+    "peak_filter",
+    "compressor",
+    "distortion",
+    "chorus",
+    "delay",
+    "reverb"
+  ],
+  "effect_activation_probabilities": {
+    "chorus": 0.3,
+    "compressor": 0.55,
+    "delay": 0.15,
+    "distortion": 0.15,
+    "highpass_filter": 0.35,
+    "lowpass_filter": 0.25,
+    "peak_filter": 0.6,
+    "reverb": 0.35
+  },
+  "order_templates": [
+    [
+      "highpass_filter",
+      "lowpass_filter",
+      "peak_filter",
+      "compressor",
+      "distortion",
+      "chorus",
+      "delay",
+      "reverb"
+    ],
+    [
+      "distortion",
+      "highpass_filter",
+      "lowpass_filter",
+      "peak_filter",
+      "compressor",
+      "chorus",
+      "delay",
+      "reverb"
+    ],
+    [
+      "compressor",
+      "distortion",
+      "highpass_filter",
+      "lowpass_filter",
+      "peak_filter",
+      "chorus",
+      "delay",
+      "reverb"
+    ],
+    [
+      "highpass_filter",
+      "lowpass_filter",
+      "peak_filter",
+      "distortion",
+      "compressor",
+      "chorus",
+      "delay",
+      "reverb"
+    ]
+  ],
+  "chain_length": {
+    "minimum": 1,
+    "maximum": 4,
+    "rule": "Independent Bernoulli draws; if empty, weighted choice of one effect; if more than four, weighted subset of four without replacement. No independent uniform length prior."
+  },
+  "parameter_priors": {
+    "chorus": {
+      "centre_delay_ms": {
+        "distribution": "log",
+        "fixed": null,
+        "maximum": 30.0,
+        "minimum": 3.0
+      },
+      "depth": {
+        "distribution": "linear",
+        "fixed": null,
+        "maximum": 0.8,
+        "minimum": 0.05
+      },
+      "feedback": {
+        "distribution": "linear",
+        "fixed": null,
+        "maximum": 0.7,
+        "minimum": -0.7
+      },
+      "mix": {
+        "distribution": "linear",
+        "fixed": null,
+        "maximum": 0.8,
+        "minimum": 0.1
+      },
+      "rate_hz": {
+        "distribution": "log",
+        "fixed": null,
+        "maximum": 8.0,
+        "minimum": 0.1
+      }
+    },
+    "compressor": {
+      "attack_ms": {
+        "distribution": "log",
+        "fixed": null,
+        "maximum": 100.0,
+        "minimum": 0.1
+      },
+      "ratio": {
+        "distribution": "log",
+        "fixed": null,
+        "maximum": 12.0,
+        "minimum": 1.5
+      },
+      "release_ms": {
+        "distribution": "log",
+        "fixed": null,
+        "maximum": 500.0,
+        "minimum": 20.0
+      },
+      "threshold_db": {
+        "distribution": "linear",
+        "fixed": null,
+        "maximum": -6.0,
+        "minimum": -40.0
+      }
+    },
+    "lowpass_filter": {
+      "cutoff_frequency_hz": {
+        "distribution": "log",
+        "fixed": null,
+        "maximum": 18000.0,
+        "minimum": 2000.0
+      }
+    },
+    "peak_filter": {
+      "cutoff_frequency_hz": {
+        "distribution": "log",
+        "fixed": null,
+        "maximum": 12000.0,
+        "minimum": 80.0
+      },
+      "gain_db": {
+        "distribution": "linear",
+        "fixed": null,
+        "maximum": 12.0,
+        "minimum": -12.0
+      },
+      "q": {
+        "distribution": "log",
+        "fixed": null,
+        "maximum": 6.0,
+        "minimum": 0.3
+      }
+    },
+    "delay": {
+      "delay_seconds": {
+        "distribution": "log",
+        "fixed": null,
+        "maximum": 1.5,
+        "minimum": 0.03
+      },
+      "feedback": {
+        "distribution": "linear",
+        "fixed": null,
+        "maximum": 0.7,
+        "minimum": 0.0
+      },
+      "mix": {
+        "distribution": "linear",
+        "fixed": null,
+        "maximum": 0.7,
+        "minimum": 0.1
+      }
+    },
+    "distortion": {
+      "drive_db": {
+        "distribution": "linear",
+        "fixed": null,
+        "maximum": 30.0,
+        "minimum": 0.0
+      }
+    },
+    "highpass_filter": {
+      "cutoff_frequency_hz": {
+        "distribution": "log",
+        "fixed": null,
+        "maximum": 1200.0,
+        "minimum": 30.0
+      }
+    },
+    "reverb": {
+      "damping": {
+        "distribution": "linear",
+        "fixed": null,
+        "maximum": 0.9,
+        "minimum": 0.1
+      },
+      "dry_level": {
+        "distribution": "linear",
+        "fixed": 0.5,
+        "maximum": null,
+        "minimum": null
+      },
+      "freeze_mode": {
+        "distribution": "linear",
+        "fixed": 0.0,
+        "maximum": null,
+        "minimum": null
+      },
+      "room_size": {
+        "distribution": "linear",
+        "fixed": null,
+        "maximum": 0.9,
+        "minimum": 0.2
+      },
+      "wet_level": {
+        "distribution": "linear",
+        "fixed": null,
+        "maximum": 0.6,
+        "minimum": 0.1
+      },
+      "width": {
+        "distribution": "linear",
+        "fixed": null,
+        "maximum": 1.0,
+        "minimum": 0.0
+      }
+    }
+  },
+  "variable_controls": 22,
+  "parameter_coordinates": {
+    "linear": "x = lower + u * (upper - lower)",
+    "log": "x = exp(log(lower) + u * (log(upper) - log(lower)))",
+    "u": "Uniform(0,1) for global-prior parameter sampling",
+    "target_manifest": "Physical controls are authoritative; legacy registry-normalized fields are not exported."
+  },
+  "source_screening": {
+    "minimum_decoded_seconds": 28,
+    "minimum_rms_dbfs_exclusive": -45,
+    "active_frame_seconds": 0.1,
+    "active_threshold_dbfs_exclusive": -55,
+    "minimum_active_ratio": 0.6,
+    "maximum_peak_exclusive": 1
+  },
+  "target_acceptance": {
+    "minimum_ld_on_both_windows": 0.8,
+    "maximum_peak_exclusive": 1,
+    "finite_only": true,
+    "max_parameter_attempts": 256,
+    "redraw": "Controls only; effect set and order stay fixed."
+  },
+  "renderer": {
+    "id": "spotify_pedalboard_cpp_0.9.23",
+    "package_version": "0.9.23",
+    "sample_rate": 44100,
+    "buffer_size": 8192,
+    "reset": true,
+    "peak_limiter": false,
+    "rms_matching": false
+  },
+  "metric": {
+    "name": "Ld",
+    "fft_sizes": [
+      1024,
+      2048,
+      512
+    ],
+    "hop_sizes": [
+      120,
+      240,
+      50
+    ],
+    "win_lengths": [
+      600,
+      1200,
+      240
+    ],
+    "window": "Hann",
+    "components": [
+      "spectral convergence",
+      "log-magnitude L1"
+    ]
+  }
+}
