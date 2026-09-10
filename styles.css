@@ -348,6 +348,69 @@ figcaption {
   max-width: 520px;
 }
 
+#normalization {
+  scroll-margin-top: 20px;
+}
+
+#normalization details {
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+
+#normalization summary {
+  padding: 3px 0;
+  color: var(--ink);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+#normalization details[open] > summary {
+  margin-bottom: 12px;
+}
+
+#normalization :focus-visible {
+  outline: 2px solid var(--link);
+  outline-offset: 3px;
+}
+
+#normalization h4 {
+  margin: 22px 0 8px;
+  font-size: 0.94rem;
+}
+
+#normalization caption {
+  padding: 0 0 8px;
+  color: var(--muted);
+  font-size: 0.8rem;
+  text-align: left;
+}
+
+#normalization thead th {
+  white-space: normal;
+}
+
+#normalization .table-wrap {
+  margin: 16px 0;
+}
+
+#normalization .normalization-note {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+#normalization .normalization-downloads {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 20px;
+  margin: 18px 0 0;
+  font-size: 0.86rem;
+}
+
+#normalization .normalization-figure {
+  max-width: 900px;
+}
+
 table {
   width: 100%;
   border-collapse: collapse;

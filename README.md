@@ -6,7 +6,7 @@ analytics, or external JavaScript dependency.
 Preview locally:
 
 ```bash
-python3 -m http.server 18992 --directory project_page
+python3 -m http.server 18992 --bind 127.0.0.1
 ```
 
 Then open `http://127.0.0.1:18992/`.
@@ -19,6 +19,9 @@ Then open `http://127.0.0.1:18992/`.
 - `data.js`: audited example metadata and experiment values.
 - `assets/audio`: ten curated CounterFX-200 examples in lossless FLAC.
 - `assets/images`: paper-aligned result figures.
+- `assets/results/normalization`: the completed 100-clip same-content
+  Fx-Normalization diagnostic, with tables, protocol, manifest, and per-clip
+  metrics. This separate MUSDB18-HQ diagnostic contains no redistributed audio.
 
 The examples include five known-topology and five hidden-topology cases. They
 are curated demonstrations rather than an additional evaluation subset. Cases
@@ -27,3 +30,23 @@ favorable examples. Source recordings and Creative Commons licenses are linked
 per case.
 
 Paper and code links should be added only after public URLs are available.
+
+## Normalization Supplement
+
+The public page is served from `gh-pages`. Its `#normalization` section is
+static HTML, including the tables; expandable details require no JavaScript.
+The displayed numbers and figure are generated from the completed audit, not
+transcribed manually. To refresh that section from a completed formal run:
+
+```bash
+python3 scripts/build_normalization.py /path/to/completed/formal
+python3 -m unittest discover -s tests -v
+```
+
+Only this export step needs NumPy and Matplotlib. It verifies the completion
+and manifest hashes, rejects incomplete counts, removes machine-specific paths
+from public metadata, and does not change the source run. It replaces only the
+marked diagnostic block in `index.html`. The static site itself has no build
+or Python dependency. The listening table is synchronized with manuscript
+revision `d629a83` (28 listeners); the normalization supplement is independent
+of that listening study.

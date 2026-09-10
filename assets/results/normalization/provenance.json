@@ -1,0 +1,215 @@
+{
+  "complete": {
+    "items": 100,
+    "summary_sha256": "2ac87284ab2cbe5a5d570dcebc51b40b78829c33125e6944574d9be4d70f4523",
+    "encoders": [
+      "afx_rep",
+      "fxencoderpp",
+      "relativefx"
+    ]
+  },
+  "protocol_lock": {
+    "script_sha256": "372f7024ca33bde68c523a5d93e8b0a3abf78761af73087449bb469d9d358699",
+    "manifest_sha256": "46b89edc47da3f6183045bd08b2c421eff3fb7d7fd8298ab38bd02147a85cc5f",
+    "upstream_commit": "916bf7e438b43f7f1dda24292dc3fd5d08e0f250",
+    "upstream_files": {
+      "automix/common_audioeffects.py": "de1c85c91a27b79fee045c3a359b06cb0506ddfcb04ac74141ea26ef6a974b6a",
+      "automix/common_dataprocessing.py": "03af6670ef5652c365832ccf9e9b7a1b4425e42c52ce6c6ef61ce0b07cbc3894",
+      "automix/common_datatypes.py": "a509468e68e58313b46e29fa20079d07d408c6550ea22996ae46d81e1fab801f",
+      "automix/common_losses.py": "1c85b62636c723fd3a4264e8904d1fe382414f8dc92423ad97d6cc7273ef9e99",
+      "automix/common_miscellaneous.py": "ebb4f4848c36cfea8f843953c53271bd21f4954542d3a995cfdd432820c4972e",
+      "automix/common_networkbuilding_cafx_tdcn_lstm_mix.py": "c95bb2d29c43a31993674c25e4db0a4498e4824287e487e72e5f147702a80cba",
+      "automix/common_networkbuilding_waveunet.py": "6186cf25b12d140b06458cb1b928e3a770b45b4202c9d22bf97e1c7f2bc46431",
+      "automix/common_supernet.py": "4fbaf0bf4a774729a8fed73c746e31fa1672aabeb4c40c3e62b42d4229355980",
+      "automix/data_normalization.py": "3db724efa2b317befe161defc59a21c23ca2259778356d8ef754043ffc5c1013",
+      "automix/evaluate.py": "3b1725a5eed8b5375007d047dd6baaa3fa084c1d360adfd4553c19a4c96e12c4",
+      "automix/inference.py": "967e69b2b08234ad89c0e27d975c4403f59c8e569334c21c05403fa1e8bdb0b0",
+      "automix/train.py": "2af35ea6a12fb4df4598e39171da91399c93600f13fd735474a527a2b6303c7c",
+      "automix/utils.py": "f7c70f231266bbd781eaa00e974e5e0afb5a67b222f3bdc5ff4a6677627c269d",
+      "automix/utils_data_normalization.py": "cdc8e26a86963f7b01e3ffa0620b7e68825e2b3f4d0f5bf16474bdca553568b1"
+    },
+    "features_sha256": "0146333277039a66b1b76ad222fadf12d6454c1541b8327b1f250ea762e1c89e",
+    "features_provenance": "Official released MUSDB18 statistics; exact contributing split not asserted",
+    "conditions": {
+      "identity": {
+        "family": "identity"
+      },
+      "gain_minus6": {
+        "family": "gain",
+        "gain_db": -6.0
+      },
+      "gain_plus6": {
+        "family": "gain",
+        "gain_db": 6.0
+      },
+      "eq_minus6": {
+        "family": "eq",
+        "gain_db": -6.0,
+        "hz": 1000.0,
+        "q": 0.707
+      },
+      "eq_plus6": {
+        "family": "eq",
+        "gain_db": 6.0,
+        "hz": 1000.0,
+        "q": 0.707
+      },
+      "comp_ratio2": {
+        "family": "compression",
+        "ratio": 2.0,
+        "attack_ms": 10.0,
+        "release_ms": 100.0
+      },
+      "comp_ratio4": {
+        "family": "compression",
+        "ratio": 4.0,
+        "attack_ms": 10.0,
+        "release_ms": 100.0
+      }
+    },
+    "items": [
+      "history_000_bass",
+      "history_000_drums",
+      "history_000_vocals",
+      "history_000_other",
+      "history_001_bass",
+      "history_001_drums",
+      "history_001_vocals",
+      "history_001_other",
+      "history_002_bass",
+      "history_002_drums",
+      "history_002_vocals",
+      "history_002_other",
+      "history_003_bass",
+      "history_003_drums",
+      "history_003_vocals",
+      "history_003_other",
+      "history_004_bass",
+      "history_004_drums",
+      "history_004_vocals",
+      "history_004_other",
+      "history_005_bass",
+      "history_005_drums",
+      "history_005_vocals",
+      "history_005_other",
+      "history_006_bass",
+      "history_006_drums",
+      "history_006_vocals",
+      "history_006_other",
+      "history_007_bass",
+      "history_007_drums",
+      "history_007_vocals",
+      "history_007_other",
+      "history_008_bass",
+      "history_008_drums",
+      "history_008_vocals",
+      "history_008_other",
+      "history_009_bass",
+      "history_009_drums",
+      "history_009_vocals",
+      "history_009_other",
+      "history_010_bass",
+      "history_010_drums",
+      "history_010_vocals",
+      "history_010_other",
+      "history_011_bass",
+      "history_011_drums",
+      "history_011_vocals",
+      "history_011_other",
+      "history_012_bass",
+      "history_012_drums",
+      "history_012_vocals",
+      "history_012_other",
+      "history_013_bass",
+      "history_013_drums",
+      "history_013_vocals",
+      "history_013_other",
+      "history_014_bass",
+      "history_014_drums",
+      "history_014_vocals",
+      "history_014_other",
+      "history_015_bass",
+      "history_015_drums",
+      "history_015_vocals",
+      "history_015_other",
+      "history_016_bass",
+      "history_016_drums",
+      "history_016_vocals",
+      "history_016_other",
+      "history_017_bass",
+      "history_017_drums",
+      "history_017_vocals",
+      "history_017_other",
+      "history_018_bass",
+      "history_018_drums",
+      "history_018_vocals",
+      "history_018_other",
+      "history_019_bass",
+      "history_019_drums",
+      "history_019_vocals",
+      "history_019_other",
+      "history_020_bass",
+      "history_020_drums",
+      "history_020_vocals",
+      "history_020_other",
+      "history_021_bass",
+      "history_021_drums",
+      "history_021_vocals",
+      "history_021_other",
+      "history_022_bass",
+      "history_022_drums",
+      "history_022_vocals",
+      "history_022_other",
+      "history_023_bass",
+      "history_023_drums",
+      "history_023_vocals",
+      "history_023_other",
+      "history_024_bass",
+      "history_024_drums",
+      "history_024_vocals",
+      "history_024_other"
+    ],
+    "normalization": "Official normalize_audio_path on full stems, EQ/compression/panning/loudness; no reverb augmentation",
+    "io": "Common source-only headroom, PCM32 inputs, upstream PCM16 intermediates, identical 10-s crops after normalization",
+    "compatibility": "Ignore deprecated firwin2(nyq=None); map librosa.util.frame positional arguments to keywords; upstream source unchanged",
+    "packages": {
+      "numpy": "1.26.4",
+      "scipy": "1.17.1",
+      "soundfile": "0.13.1",
+      "pyloudnorm": "0.2.0",
+      "pedalboard": "0.9.23",
+      "torch": "2.1.2",
+      "librosa": "0.11.0",
+      "aubio": "0.4.9",
+      "soxbindings": "1.2.3"
+    },
+    "metric_and_encoder_source_sha256": {
+      "experiments/run_candidate_budget.py": "72901bdfb2a46edd7fe09692162d6247d95066305130e4139f9a8a31f06866fe",
+      "fx_registry/encoders.py": "9cf9e90f555bf83dc2e1cb2186e6d024c1d023c0c2eee2b5e6a9542fcfab235f",
+      "fx_registry/backbone.py": "a7ebdf7ed38bc077f7c3f8d2363988d93376f14a197d0cd9ed50448843c9a586"
+    }
+  },
+  "compute_environment": {
+    "device": "cuda",
+    "torch": "2.1.2+cu121",
+    "cuda": "12.1",
+    "gpu_name": "NVIDIA L20",
+    "cpu_threads_for_metrics": 2,
+    "normalization_workers": 8
+  },
+  "encoders": {
+    "relativefx": {
+      "label": "RelFx",
+      "checkpoint_sha256": "7058280f8296ff3e29929e2b4a0eb2a268dde9a2f813b18a2d680d1583627b7f"
+    },
+    "fxencoderpp": {
+      "label": "Fx-Encoder++",
+      "checkpoint_sha256": "9291f51c4beb6a3bfd1c50aafeab3e3cbcc5d20f9a87234f2205f8156177c14c"
+    },
+    "afx_rep": {
+      "label": "AFx-Rep",
+      "checkpoint_sha256": "3587c4f3a1a8ecbc53b8023c480a0e6ff80719bcc26ce6ee6d08b8daf41d75d4"
+    }
+  },
+  "public_manifest_note": "Machine paths replaced with dataset-relative paths; original manifest hash retained for provenance."
+}

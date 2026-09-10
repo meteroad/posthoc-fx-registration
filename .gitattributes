@@ -1,0 +1,2 @@
+# Preserve the completed CSV exports byte-for-byte, including native CRLF.
+assets/results/normalization/*.csv -text whitespace=cr-at-eol
