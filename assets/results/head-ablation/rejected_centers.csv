@@ -1,0 +1,11 @@
+encoder,topology,item_id,center_accepted,n1_origin,n1_ld,raw_center_ld,rejection_reason,full_pool_attempts,pool_rejections,unused_valid_renders
+relativefx,known,fma_test_012390,False,head_centered,1.4041355848312378,,not separated: nonfinite or peak rejection,2257,1741,4
+relativefx,known,fma_test_020296,False,head_centered,0.7988681793212891,,not separated: nonfinite or peak rejection,1323,699,112
+relativefx,known,fma_test_039317,False,head_centered,1.7289459705352783,,not separated: nonfinite or peak rejection,1285,648,125
+relativefx,known,fma_test_076363,False,head_centered,2.8580007553100586,,not separated: nonfinite or peak rejection,3955,3428,15
+relativefx,unknown,fma_test_063064,False,head_centered,2.3662946224212646,,not separated: nonfinite or peak rejection,820,81,227
+fxencoderpp,known,fma_test_012065,False,head_centered,0.9609861373901367,,not separated: nonfinite or peak rejection,1795,1244,39
+fxencoderpp,known,fma_test_076363,False,head_centered,2.159125804901123,,not separated: nonfinite or peak rejection,3424,2875,37
+fxencoderpp,known,fma_test_140621,False,head_centered,2.184784412384033,,not separated: nonfinite or peak rejection,1422,907,3
+afxrep,known,fma_test_076363,False,head_centered,2.60075044631958,,not separated: nonfinite or peak rejection,1330,726,92
+afxrep,unknown,fma_test_020296,False,head_centered,1.2634124755859375,,not separated: nonfinite or peak rejection,823,96,215
