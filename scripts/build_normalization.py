@@ -101,8 +101,13 @@ def render_section(summary):
         embeddings.append(f"<h4>{label}</h4>" + table(f"{label}: cosine distance on 100 clips per intervention.",
                           ["Intervention", "Before mean", "After mean", "After median", "After 95% CI"], rows))
     repeat = conditions["identity_repeat"]["normalized"]["ld"]
-    return f'''      <section class="result-block" id="normalization" aria-labelledby="normalization-title">
-        <h3 id="normalization-title">Effect-Normalization Diagnostic</h3>
+    return f'''      <section class="result-block result-detail" id="normalization" aria-labelledby="normalization-title">
+        <details>
+          <summary class="result-detail-summary">
+            <span class="result-detail-title" id="normalization-title">Effect-neutralization audit</span>
+            <span class="result-detail-description">Where Fx-Normalization removes processing differences and where residual differences remain</span>
+          </summary>
+          <div class="result-detail-body">
         <p>
           Does Fx-Normalization map different processing histories to a common
           state? This separate diagnostic uses {summary["items"]} ten-second clips from
@@ -233,6 +238,8 @@ def render_section(summary):
           <a href="{PREFIX}provenance.json" download>Provenance</a>
           <a href="{PREFIX}checksums.sha256" download>Checksums</a>
         </div>
+          </div>
+        </details>
       </section>'''
 
 

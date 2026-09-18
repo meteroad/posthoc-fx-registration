@@ -74,8 +74,13 @@ def render(data):
                                ("rejected_centers.csv", "Rejected centers"),
                                ("summary.json", "Protocol and results"),
                                ("checksums.sha256", "Checksums")))
-    return f'''<section class="result-block" id="head-ablation" aria-labelledby="head-ablation-title">
-        <h3 id="head-ablation-title">Head-Pool Ablation</h3>
+    return f'''<section class="result-block result-detail" id="head-ablation" aria-labelledby="head-ablation-title">
+        <details>
+          <summary class="result-detail-summary">
+            <span class="result-detail-title" id="head-ablation-title">Proposal expansion audit</span>
+            <span class="result-detail-description">Head@1, Head@16, Head@512, validity, and rendering-cost accounting</span>
+          </summary>
+          <div class="result-detail-body">
         <p>
           Head@1 scores one valid proposal: the predicted center when valid,
           otherwise the first valid head-centered sample. It performs no
@@ -130,6 +135,8 @@ def render(data):
         <div class="benchmark-downloads" aria-label="Head-pool ablation downloads">
           {downloads}
         </div>
+          </div>
+        </details>
       </section>'''
 
 

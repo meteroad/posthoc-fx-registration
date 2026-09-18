@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Audio examples and supplementary results for post-hoc FX registration and rendered verification.">
   <title>Post-hoc FX Registration and Rendered Verification for Audio Effect Transfer</title>
-  <link rel="stylesheet" href="styles.css?v=6">
+  <link rel="stylesheet" href="styles.css?v=7">
 </head>
 <body>
   <header class="site-header">
@@ -15,6 +15,7 @@
         <a href="#benchmark">Benchmark</a>
         <a href="#audio">Audio</a>
         <a href="#results">Results</a>
+        <a href="https://github.com/meteroad/fxrepbench">Benchmark GitHub</a>
       </nav>
     </div>
   </header>
@@ -30,10 +31,22 @@
         select among their rendered outputs. This avoids query-time parameter
         optimization while retaining audio-based verification.
       </p>
+      <p class="resource-links" aria-label="Project resources">
+        <a href="https://github.com/meteroad/fxrepbench">Benchmark (GitHub)</a>
+        <a href="#audio">Audio examples</a>
+        <a href="#results">Results</a>
+      </p>
     </section>
 
     <section class="content-section" id="benchmark">
-      <h2>CounterFX-200 Benchmark</h2>
+      <div class="section-heading">
+        <p class="section-label">Benchmark</p>
+        <h2>CounterFX-200</h2>
+        <p class="section-lead">
+          Exact-target evaluation of audio-effect transfer without requiring
+          effect-neutral source audio.
+        </p>
+      </div>
       <p>
         Two adjacent, non-overlapping windows are taken from the same track.
         The same hidden FX chain is applied to both windows. The system receives
@@ -41,6 +54,10 @@
         <i>B</i><sub>ref</sub>; the processed source
         <i>A</i><sub>target</sub> is withheld and used as an exact same-content
         evaluation target.
+      </p>
+      <p class="section-links">
+        <a href="https://github.com/meteroad/fxrepbench"><b>Open the benchmark on GitHub</b></a>
+        <a href="#benchmark-specification">Protocol and released files</a>
       </p>
 
       <figure class="benchmark-figure">
@@ -95,7 +112,6 @@
           the selected&ndash;oracle gap describes ranking error within a pool.
         </p>
         <div class="benchmark-downloads" aria-label="CounterFX-200 specification downloads">
-          <a href="https://github.com/meteroad/fxrepbench">Benchmark repository (GitHub)</a>
           <a href="assets/results/counterfx200/protocol.md">Full protocol</a>
           <a href="assets/results/counterfx200/configuration.json" download>Configuration JSON</a>
           <a href="assets/results/counterfx200/parameter_ranges.csv" download>Parameter ranges</a>
@@ -109,7 +125,14 @@
     </section>
 
     <section class="content-section" id="audio">
-      <h2>Audio Examples</h2>
+      <div class="section-heading">
+        <p class="section-label">Listening</p>
+        <h2>Audio Examples</h2>
+        <p class="section-lead">
+          Compare the source, processed reference, exact target, and system
+          outputs for each example.
+        </p>
+      </div>
       <p>
         Representative known- and hidden-topology examples from CounterFX-200.
         Each example occupies one row. Lower <i>L</i><sub>d</sub> indicates a
@@ -120,10 +143,36 @@
     </section>
 
     <section class="content-section" id="results">
-      <h2>Supplementary Results</h2>
+      <div class="section-heading">
+        <p class="section-label">Evaluation</p>
+        <h2>Results</h2>
+        <p class="section-lead">
+          Main paper-aligned results appear first; implementation audits and
+          sensitivity analyses remain available below.
+        </p>
+      </div>
 
-      <section class="result-block" aria-labelledby="budget-title">
-        <h3 id="budget-title">Candidate budget</h3>
+      <section class="result-overview" aria-labelledby="findings-title">
+        <h3 id="findings-title">Key findings</h3>
+        <ul class="findings">
+          <li><b>Learned proposals reduce the search budget.</b> RelFx Head@16 reaches 0.769 versus 0.770 for Random@512 with known topology.</li>
+          <li><b>Proposal and ranking remain distinct bottlenecks.</b> Oracle candidates continue improving after selected results begin to flatten.</li>
+          <li><b>The output metric has perceptual support.</b> Across 28 listeners, system-only scores correlate with negative <i>L</i><sub>d</sub> at Spearman <i>&rho;</i> = 0.357.</li>
+        </ul>
+        <nav class="result-index" aria-label="Result sections">
+          <a href="#candidate-efficiency">Candidate efficiency</a>
+          <a href="#head-ablation">Proposal audit</a>
+          <a href="#representation-comparison">Representations</a>
+          <a href="#coverage-ranking">Coverage and ranking</a>
+          <a href="#cmaes-analysis">CMA-ES</a>
+          <a href="#runtime">Runtime</a>
+          <a href="#perception">Perception</a>
+          <a href="#normalization">Fx-Norm audit</a>
+        </nav>
+      </section>
+
+      <section class="result-block" id="candidate-efficiency" aria-labelledby="budget-title">
+        <h3 id="budget-title">Candidate efficiency</h3>
         <p>
           Learned proposals are most useful at small budgets. With known
           topology, RelativeFx Head@16 obtains <i>L</i><sub>d</sub> = 0.769,
@@ -141,8 +190,13 @@
       </section>
 
       <!-- BEGIN HEAD ABLATION -->
-      <section class="result-block" id="head-ablation" aria-labelledby="head-ablation-title">
-        <h3 id="head-ablation-title">Head-Pool Ablation</h3>
+      <section class="result-block result-detail" id="head-ablation" aria-labelledby="head-ablation-title">
+        <details>
+          <summary class="result-detail-summary">
+            <span class="result-detail-title" id="head-ablation-title">Proposal expansion audit</span>
+            <span class="result-detail-description">Head@1, Head@16, Head@512, validity, and rendering-cost accounting</span>
+          </summary>
+          <div class="result-detail-body">
         <p>
           Head@1 scores one valid proposal: the predicted center when valid,
           otherwise the first valid head-centered sample. It performs no
@@ -218,11 +272,13 @@
 <a href="assets/results/head-ablation/summary.json" download>Protocol and results</a>
 <a href="assets/results/head-ablation/checksums.sha256" download>Checksums</a>
         </div>
+          </div>
+        </details>
       </section>
       <!-- END HEAD ABLATION -->
 
-      <section class="result-block" aria-labelledby="encoder-title">
-        <h3 id="encoder-title">Cross-representation comparison</h3>
+      <section class="result-block" id="representation-comparison" aria-labelledby="encoder-title">
+        <h3 id="encoder-title">Representation comparison</h3>
         <p>
           The same post-hoc registration protocol is applied to three frozen
           representations. Values are selected mean <i>L</i><sub>d</sub> on
@@ -243,12 +299,15 @@
         </div>
       </section>
 
-      <section class="result-block" aria-labelledby="coverage-title">
-        <h3 id="coverage-title">Proposal coverage and verifier gap</h3>
+      <section class="result-block" id="coverage-ranking" aria-labelledby="coverage-title">
+        <h3 id="coverage-title">Candidate coverage and ranking</h3>
         <p>
           Oracle error is the best waveform match already present in a
           candidate pool. The selected-oracle gap therefore measures how much
           performance remains in candidate ranking after proposal generation.
+          Low output error does not require exact topology recovery: RelFx
+          Head@512 recovers the target effect identities and order in 14.0% of
+          hidden-topology cases.
         </p>
         <div class="table-wrap">
           <table>
@@ -268,8 +327,13 @@
         </div>
       </section>
 
-      <section class="result-block" aria-labelledby="cma-title">
-        <h3 id="cma-title">Optimization budget and audio match</h3>
+      <section class="result-block result-detail" id="cmaes-analysis" aria-labelledby="cma-title">
+        <details>
+          <summary class="result-detail-summary">
+            <span class="result-detail-title" id="cma-title">CMA-ES budget analysis</span>
+            <span class="result-detail-description">Why a better verifier objective does not always produce a better audio match</span>
+          </summary>
+          <div class="result-detail-body">
         <p>
           In hidden-topology CMA-ES, the verifier cosine objective continues to
           improve with more calls, while output error is lowest at 2,048 calls.
@@ -287,9 +351,11 @@
             </tbody>
           </table>
         </div>
+          </div>
+        </details>
       </section>
 
-      <section class="result-block" aria-labelledby="runtime-title">
+      <section class="result-block" id="runtime" aria-labelledby="runtime-title">
         <h3 id="runtime-title">Matched runtime</h3>
         <p>
           Median end-to-end query time for 10-second audio, including proposal,
@@ -315,8 +381,8 @@
         </div>
       </section>
 
-      <section class="result-block" aria-labelledby="listening-title">
-        <h3 id="listening-title">Perceptual evaluation</h3>
+      <section class="result-block" id="perception" aria-labelledby="listening-title">
+        <h3 id="listening-title">Perceptual agreement</h3>
         <p>
           Twenty-eight listeners provided 672 five-point ratings. Subjective
           similarity correlates with negative <i>L</i><sub>d</sub> at Spearman
@@ -345,8 +411,13 @@
       </section>
 
       <!-- BEGIN NORMALIZATION DIAGNOSTIC -->
-      <section class="result-block" id="normalization" aria-labelledby="normalization-title">
-        <h3 id="normalization-title">Effect-Normalization Diagnostic</h3>
+      <section class="result-block result-detail" id="normalization" aria-labelledby="normalization-title">
+        <details>
+          <summary class="result-detail-summary">
+            <span class="result-detail-title" id="normalization-title">Effect-neutralization audit</span>
+            <span class="result-detail-description">Where Fx-Normalization removes processing differences and where residual differences remain</span>
+          </summary>
+          <div class="result-detail-body">
         <p>
           Does Fx-Normalization map different processing histories to a common
           state? This separate diagnostic uses 100 ten-second clips from
@@ -512,17 +583,11 @@
           <a href="assets/results/normalization/provenance.json" download>Provenance</a>
           <a href="assets/results/normalization/checksums.sha256" download>Checksums</a>
         </div>
+          </div>
+        </details>
       </section>
       <!-- END NORMALIZATION DIAGNOSTIC -->
 
-      <section class="result-block" aria-labelledby="findings-title">
-        <h3 id="findings-title">Additional observations</h3>
-        <ul class="findings">
-          <li><b>Proposal and verification are distinct bottlenecks.</b> Oracle curves improve steadily with budget, while selected curves flatten earlier.</li>
-          <li><b>Audio matching does not require exact chain recovery.</b> RelativeFx Head@512 reaches hidden-topology FX-set F1 = 0.725, while exact chain recovery is 14.0%.</li>
-          <li><b>The output metric has perceptual support.</b> Across 28 listeners and 672 five-point ratings, system-only scores correlate with negative <i>L</i><sub>d</sub> at Spearman <i>&rho;</i> = 0.357.</li>
-        </ul>
-      </section>
     </section>
   </main>
 
