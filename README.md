@@ -29,7 +29,8 @@ in which another method outperforms Head@16 are retained to avoid showing only
 favorable examples. Source recordings and Creative Commons licenses are linked
 per case.
 
-Paper and code links should be added only after public URLs are available.
+The CounterFX benchmark repository is linked from the benchmark section:
+`https://github.com/meteroad/fxrepbench`.
 
 ## CounterFX-200 Specification
 
